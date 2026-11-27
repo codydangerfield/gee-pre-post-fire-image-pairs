@@ -16,11 +16,11 @@ moisture, and other background conditions. These rankings support visual
 image selection; they do not replace review of scene quality or fire timing.
 
 The application is implemented in
-[GEE_PrePostFireImagePairs.js](GEE_PrePostFireImagePairs.js) and builds on
+[GEE_PrePostFireImagePairs.js](scripts/GEE_PrePostFireImagePairs.js) and builds on
 Justin Braaten's [EO Time Series Explorer](https://jstnbraaten.users.earthengine.app/view/eo-timeseries-explorer)
 and RGB time-series charting module.
 
-![Application overview showing the map, controls, imagery panels, and time-series chart.](UI.png)
+![Application overview showing the map, controls, imagery panels, and time-series chart.](docs/images/UI.png)
 
 **1. Application Data and Supporting Tools**
 
@@ -102,12 +102,12 @@ time-series chart, not for the EA-boundary image-pair statistics.
 After changing options, use **Submit changes** to refresh imagery at the
 current location.
 
-![Sensor, date, visualization, and imagery input controls.](UI_Inputs.png)
+![Sensor, date, visualization, and imagery input controls.](docs/images/UI_Inputs.png)
 
 Each image card displays its acquisition date and an RGB
 thumbnail. Select **Visible** to add the scene to the map.
 
-![Image thumbnails available for preview and map display.](UI_Thumbnails.png)
+![Image thumbnails available for preview and map display.](docs/images/UI_Thumbnails.png)
 
 **3. Import a Fire Perimeter and EA Boundary**
 
@@ -127,25 +127,25 @@ The application provides two geometry-import methods:
 Use **Show imported geometry** and **Show EA boundary** to control boundary
 visibility. Hiding a boundary does not remove it from the analysis.
 
-![Imported asset and automatically generated external donut boundary.](Asset_Input_Donut_Created.png)
+![Imported asset and automatically generated external donut boundary.](docs/images/Asset_Input_Donut_Created.png)
 
 **4. Browse Post-Burn Images**
 
 The right side of the application contains separate **Post-burn Images**
 and **Pre-burn Images** panels. 
 
-![Side-by-side post-burn and pre-burn image panels.](Image_Panel_Post_Pre_Fire.png)
+![Side-by-side post-burn and pre-burn image panels.](docs/images/Image_Panel_Post_Pre_Fire.png)
 
 The post-burn panel is populated using the
 selected sensor, location, date range, and scene-level cloud threshold.
 
-![Post-burn image cards with visibility and image-pair search controls.](Image_Panel_Post_Fire.png)
+![Post-burn image cards with visibility and image-pair search controls.](docs/images/Image_Panel_Post_Fire.png)
 
 **Limit number of Post-Burn Images** optionally restricts the browse
 collection to the specified number of least-cloudy scenes. Those scenes
 are then displayed in chronological order. 
 
-![Post-burn image-count limit control.](Image_Panel_Post_Fire_ImageLimit.png)
+![Post-burn image-count limit control.](docs/images/Image_Panel_Post_Fire_ImageLimit.png)
 
 **5. Find Candidate Pre-Burn Image Pairs**
 
@@ -168,7 +168,7 @@ Historical imagery uses the selected sensor and scene-level cloud
 threshold. Before computing pair statistics, the application retains up to
 **50 of the least-cloudy historical candidates** across the search windows.
 
-![Search for historical image pairs from a selected post-burn scene.](Image_Panel_Find_Image_Pairs.png)
+![Search for historical image pairs from a selected post-burn scene.](docs/images/Image_Panel_Find_Image_Pairs.png)
 
 **5.1 dNBR Calculation and Pixel Screening**
 
@@ -230,7 +230,7 @@ The pre-burn panel displays the top qualifying candidates in ranking order,
 up to the requested limit. Each card includes the date, mean dNBR, standard
 deviation, and an RGB thumbnail.
 
-![Controls for ranking historical pairs by mean dNBR or standard deviation.](Image_Panel_Find_Image_Pairs_Sort.png)
+![Controls for ranking historical pairs by mean dNBR or standard deviation.](docs/images/Image_Panel_Find_Image_Pairs_Sort.png)
 
 **6. Review Time-Series Patterns**
 
@@ -242,12 +242,12 @@ by **1,000** in the script.
 Choose a pre-fire date range to examine seasonal greenness and leaf-out
 patterns before selecting imagery with comparable phenology.
 
-![NDVI time series illustrating pre-fire seasonal greenness and leaf-out.](TImeSeries_NDVI_LeafOut.png)
+![NDVI time series illustrating pre-fire seasonal greenness and leaf-out.](docs/images/TImeSeries_NDVI_LeafOut.png)
 
 Choose a date range spanning or following the fire to inspect changes in
 the selected index or band.
 
-![NDVI time series illustrating changes around the burn period.](TImeSeries_NDVI_Burn.png)
+![NDVI time series illustrating changes around the burn period.](docs/images/TImeSeries_NDVI_Burn.png)
 
 The chart uses the browse collection, not the ranked historical-pair
 collection. Its imagery is not passed through the additional pixel-masking
@@ -261,7 +261,7 @@ Each pre-burn card provides three display options:
 - **Visible:** Adds the pre-burn RGB image to the map for comparison with
   the selected post-burn scene.
 
-  ![Pre-burn image displayed on the map for visual comparison.](Image_Panel_Find_Image_Pairs_visible.png)
+  ![Pre-burn image displayed on the map for visual comparison.](docs/images/Image_Panel_Find_Image_Pairs_visible.png)
 
 - **Show dNBR:** Displays the corresponding pre-minus-post dNBR image with
   a visualization range of **−1,000 to 1,000**. An opacity slider allows
@@ -269,7 +269,7 @@ Each pre-burn card provides three display options:
   on imagery without the additional statistical masks; it is not limited
   to the pixels used to calculate the refined statistics.
 
-  ![dNBR display and opacity control for a candidate image pair.](Image_Panel_Find_Image_Pairs_dNBR.png)
+  ![dNBR display and opacity control for a candidate image pair.](docs/images/Image_Panel_Find_Image_Pairs_dNBR.png)
 
 - **Show Masked Areas:** Displays a purple exclusion overlay assembled
   from the pre-burn quality mask, dNBR-range screening, and NLCD screening.
@@ -278,7 +278,7 @@ Each pre-burn card provides three display options:
   screening aid rather than a complete map of every invalid pixel in both
   images.
 
-  ![Purple overlay showing areas excluded by the candidate screening masks.](Image_Panel_Find_Image_Pairs_Mask.png)
+  ![Purple overlay showing areas excluded by the candidate screening masks.](docs/images/Image_Panel_Find_Image_Pairs_Mask.png)
 
 **8. Recommended Evaluation Workflow**
 
